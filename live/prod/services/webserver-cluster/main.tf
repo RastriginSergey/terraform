@@ -9,6 +9,10 @@ terraform {
   }
 }
 
+module "hello_world_app" {
+  source = "../../../../modules/services/hello-world-app"
+}
+
 module "webserver_cluster" {
   source                 = "../../../../modules/services/webserver-cluster"
   ami                    = "ami-0a86f18b52e547759"

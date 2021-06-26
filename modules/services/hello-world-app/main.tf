@@ -1,5 +1,6 @@
 module "asg" {
   source        = "../../cluster/asg-rolling-deploy"
+  ami           = var.ami
   cluster_name  = "hello-world-${var.environment}"
   user_data     = data.template_file.user_data.rendered
   instance_type = var.instance_type
@@ -41,7 +42,7 @@ data "aws_subnet_ids" "default" {
 }
 
 resource "aws_lb_target_group" "asg" {
-  name     = "hello-world-${var.environmet}"
+  name     = "hello-world-${var.environment}"
   port     = var.server_port
   protocol = "HTTP"
   vpc_id   = data.aws_vpc.default.id
